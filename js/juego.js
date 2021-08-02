@@ -499,7 +499,7 @@ function inicializa() {
   //musica.play();
 
   tileMap = new Image();
-  tileMap.src = 'img/S.png';
+  tileMap.src = 'img/tilemap6.png';
 
 
 
