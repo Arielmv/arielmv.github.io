@@ -1,58 +1,304 @@
-</html>
+
+  
+<!DOCTYPE html>
+
+<html lang="es">
 
 <head>
+  <meta charset="UTF-8">
+  <title>Heroe scape</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="manifest" href="manifest.webmanifest">
 
-  <title>Juego Mazmorra</title>
+
+
   <!-- Hoja de estilos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="icon-192x192.png" type="image/png">
+
 
 
   <script src="js/howler.core.js"></script>
   <script src='js/juego.js'></script>
+  <style>
+    @font-face {
+      font-family: "fuente";
+      src: url("PressStart2P.woff") format("woff"), url("PressStart2P.ttf") format("truetype")
+    }
+
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      font-family: fuente !important;
+      background-image: repeating-linear-gradient(282deg, hsla(264,0%,51%,0.12) 0px,transparent 7px,hsla(264,0%,51%,0.12) 12px,transparent 19px,hsla(264,0%,51%,0.12) 24px,transparent 31px,hsla(264,0%,51%,0.12) 36px),repeating-linear-gradient(176deg, hsla(264,0%,51%,0.12) 0px,transparent 7px,hsla(264,0%,51%,0.12) 12px,transparent 19px,hsla(264,0%,51%,0.12) 24px,transparent 31px,hsla(264,0%,51%,0.12) 36px),repeating-linear-gradient(314deg, hsla(264,0%,51%,0.12) 0px,transparent 7px,hsla(264,0%,51%,0.12) 12px,transparent 19px,hsla(264,0%,51%,0.12) 24px,transparent 31px,hsla(264,0%,51%,0.12) 36px),linear-gradient(90deg, rgb(37,37,37),rgb(37,37,37));
+      zoom: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+    }
+
+    .nes-progress {
+      height: 27px;
+    }
+
+    .nes-container.with-title>.title {
+
+      margin: -2.3rem 0 1rem;
+    }
+
+    .nes-btn.is-primary {
+      
+      width: 30%;
+    }
+  </style>
+
 </head>
 
 <body onload='inicializa();'>
 
-  <div class="container">
+  <!--   <nav class="">
+    <div class="nav-wrapper blue-grey">
+      <ul id="nav-mobile" class="right hide-on-med-and-down container">
+        <li><a onclick="cambiaStilo(1);">Estilo 1</a></li>
+        <li><a onclick="cambiaStilo(2);">Estilo 2</a></li>
+        <li><a onclick="cambiaStilo(3);">Estilo 3</a></li>
+        <li><a class="modal-trigger" href="#modal1">Ayuda</a></li>
+      </ul>
+    </div>
+  </nav> -->
+
+  <div>
+    <div class="fixed-action-btn click-to-toggle direction-top" style="position: absolute; right: 24px;">
+      <a class="btn-floating btn-large red">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul>
+        <li>
+          <a href="#modal1" class="btn-floating red modal-trigger"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">help_outline</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(1);" class="btn-floating   grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_1</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(2);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_2</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(3);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_3</i>
+          </a>
+        </li>
+        <li>
+        <li>
+          <a onclick="cambiaStilo(4);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_4</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(5);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_5</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(6);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_6</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(7);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_7</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(8);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_8</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo(9);" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">filter_9</i>
+          </a>
+        </li>
+        <li>
+          <a onclick="cambiaStilo( Math.floor(Math.random() * 9));" class="btn-floating  grey  darken-4"
+            style="opacity: 1; transform: scale(1) translateY(0px) translateX(0px);">
+            <i class="material-icons">shuffle</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <br>
+  <div class=" container">
     <center>
-      <canvas id='canvas' width='750' height='500' style='border:2px solid #000000;'></canvas>
+      <canvas id='canvas' width='750' height='500' class="nes-container is-dark"></canvas>
     </center>
 
 
     <div class="row">
-      
-        <div class="col s12 m6">
-          <div class="card purple darken-4">
-            <div class="card-content white-text">
-              <span class="card-title center">Nivel</span>
-              <p id="nivel"></p>
-            </div>
-            <div class="card-action">
-              <a href="#">Compartir</a>
 
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m6 ">
-          <div class="card purple darken-4">
-            <div class="card-content white-text">
-              <span class="card-title center">Maximo</span>
-              <p id="maximo"></p>
-            </div>
-            <div class="card-action">
-              <a href="#">Compartir</a>
+      <div class="col s6 m6">
+        <div class="card  nes-container is-dark with-title">
+          <p class="title">Nivel</p>
+          <div class="card-content white-text">
 
-            </div>
+            <!-- <h5 class="card-title center">Nivel</h5> -->
+            <h5 class="center" id="nivel"></h5>
+            <progress id="nivelProgress" class="nes-progress" value="0" max="18"></progress>
           </div>
+          <!-- <div class="card-action">
+            <a href="#">Compartir</a>
+          </div> -->
         </div>
+      </div>
+      <div class="col s6 m6">
+        <div class="card nes-container is-dark with-title">
+          <p class="title">Maximo</p>
+          <div class="card-content white-text">
+
+            <!-- <h5 class="card-title center">Maximo</h5> -->
+            <h5 class="center" id="maximo"></h5>
+            <progress id="maxProgress" class="nes-progress" value="0" max="18"></progress>
+          </div>
+          <!-- <div class="card-action">
+            <a href="#">Compartir</a>
+          </div> -->
+        </div>
+      </div>
     </div>
-    
 
+
+    <!-- <a class="btn-floating btn-large waves-effect waves-light right green darken-3 modal-trigger" href="#modal1"><i
+        class="material-icons">help_outline</i></a> -->
+
+    <div id="botones" style="display: none;">
+      <center>
+        <div class="row">
+
+          <button type="button" class="nes-btn is-primary " onclick="protagonista.arriba();"><i
+              class="material-icons">arrow_upward</i></button>
+        </div>
+        <div class="row">
+          <button type="button" class="nes-btn is-primary" onclick="protagonista.izquierda();"><i
+              class="material-icons">arrow_back</i></button>
+          <button type="button" class="nes-btn is-disabled" onclick="musica.volume=0;"><i
+              class="material-icons">volume_off</i></button>
+          <button type="button" class="nes-btn is-primary" onclick="protagonista.derecha();"><i
+              class="material-icons">arrow_forward</i></button>
+        </div>
+        <div class="row">
+          <button type="button" class="nes-btn is-primary" onclick="protagonista.abajo();"><i
+              class="material-icons">arrow_downward</i></button>
+        </div>
+      </center>
+    </div>
+
+  </div> <!-- finaliza container -->
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer ">
+    <div class="modal-content nes-container  ">
+      <center>
+        <p>Bienvenido!!!</p>
+        <br>
+      </center>
+      <p>Este es un juego de habilidad y aventura. <br>
+        Haz despertado despues de una larga fiesta, y te encuentras en un lugar desconocido y solamente acompañado de
+        unas criaturas que te persiguen de forma erratica. <br>
+        Encuentra la llave y despues la puerta para poder escapar de este lugar. <br>
+        Para ello utiliza las flechas del teclado <img src="teclas.png" alt="" width="10%">, o desde tu dispositivo
+        movil puedes utilizar los botones tactiles.
+      </p>
+    </div>
+    <div class="modal-footer nes-container">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Empezar</a>
+    </div>
   </div>
 
 
+
+
   <!-- script materialize.css -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="materialize.min.js"></script>
+
+  <script>
+    M.AutoInit();
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        direction: 'top'
+      });
+    });
+
+
+
+
+    navegador = navigator.userAgent; //busco el "userAgent" del usuario.
+    //lista de palabras del "userAgent" en los móviles
+    moviles = ["Mobile", "iPhone", "iPod", "BlackBerry", "Opera Mini", "Sony", "MOT", "Nokia", "samsung"];
+    detector = 0; //Variable que detectará si se usa un móvil
+    for (i in moviles) { //comprobar en la lista ...
+      //si el método "indexOf" no devuelve -1, indica que la palabra está en el "userAgent"
+      compruebo = navegador.indexOf(moviles[i]);
+      if (compruebo > -1) {
+        detector = 1; //Si es un móvil, cambio el valor del detector
+      }
+    }
+    if (detector == 1) { //si es un móvil redirecciono la página.
+      document.getElementById('canvas').style.zoom = "40%";
+      document.getElementById('maxProgress').style.zoom = "60%";
+      document.getElementById('nivelProgress').style.zoom = "60%";
+      document.getElementById('botones').style.display = '';
+    }
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      console.log("El Navegador admite service workers");
+      window.addEventListener('load', function () {
+        //navigator.serviceWorker.register('sw_offlinepage.js')
+        //navigator.serviceWorker.register('sw_offlinesite.js')
+        navigator.serviceWorker.register(/*'js/sw.js'*/ 'generate-sw.js')
+
+          .then(function (registration) {
+            console.log('Service worker registrado de modo correcto');
+            console.log('Scope: ' + registration.scope)
+          }, function (error) {
+            console.log('El registro del Service worker ha fallado');
+            console.log(error)
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>
