@@ -714,7 +714,7 @@ function cambiaStilo(tile) {
   switch (tile) {
 
     case 1:
-      stiloMapa = 'img/S.png';
+      stiloMapa = 'img/juego.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -729,7 +729,7 @@ function cambiaStilo(tile) {
       break;
 
     case 2:
-      stiloMapa = 'img/sin nombre.png';
+      stiloMapa = 'img/juego1.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -744,7 +744,7 @@ function cambiaStilo(tile) {
       break;
 
     case 3:
-      stiloMapa = 'img/jueguito.png';
+      stiloMapa = 'img/juego2.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -759,7 +759,7 @@ function cambiaStilo(tile) {
       break;
 
     case 4:
-      stiloMapa = 'img/tilemap4.png';
+      stiloMapa = 'img/juego3.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -774,7 +774,7 @@ function cambiaStilo(tile) {
       break;
 
     case 5:
-      stiloMapa = 'img/tilemap5.png';
+      stiloMapa = 'img/juego4.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -788,7 +788,7 @@ function cambiaStilo(tile) {
 
       break;
     case 6:
-      stiloMapa = 'img/tilemap6.png';
+      stiloMapa = 'img/juego5.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -802,7 +802,7 @@ function cambiaStilo(tile) {
 
       break;
     case 7:
-      stiloMapa = 'img/tilemap7.png';
+      stiloMapa = 'img/juego6.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
