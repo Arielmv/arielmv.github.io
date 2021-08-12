@@ -21,6 +21,11 @@ var tileMap;
 var musica, sonido1, sonido2, sonido3;
 
 var nivel = 1;
+var nivelProgres;
+
+var stiloMapa = localStorage.getItem("stiloMapa");
+
+
 
 //Traer sonidos
 musica = new Howl({
@@ -62,7 +67,7 @@ var escenario = [
 ];
 var escenario1 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2, 0],
+  [0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 2, 0],
   [0, 0, 2, 2, 2, 2, 2, 0, 0, 2, 0, 0, 2, 0, 0],
   [0, 0, 2, 0, 0, 0, 2, 2, 0, 2, 2, 2, 2, 0, 0],
   [0, 0, 2, 2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0],
@@ -76,7 +81,7 @@ var escenario1 = [
 //Ariel Omar Méndez Valverde
 var escenario2 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0],
   [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
   [0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 2, 0],
   [0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 2, 0],
@@ -87,22 +92,22 @@ var escenario2 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 var escenario3 = [
-  [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0],
-  [0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0],
-  [0, 0, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0],
-  [0, 2, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0],
-  [0, 2, 0, 2, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 3],
-  [0, 2, 0, 0, 0, 1, 0, 0, 2, 0, 2, 0, 2, 0, 2],
-  [0, 2, 0, 2, 2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 2],
-  [0, 2, 2, 2, 0, 2, 0, 0, 2, 2, 2, 2, 2, 2, 2],
-  [0, 0, 0, 2, 2, 2, 0, 2, 2, 0, 2, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 0, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 0, 2, 0, 0],
+  [0, 2, 0, 0, 0, 0, 2, 2, 2, 0, 2, 0, 2, 0, 0],
+  [0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 3, 0],
+  [0, 0, 2, 0, 0, 1, 0, 0, 2, 2, 2, 2, 0, 0, 0],
+  [0, 2, 2, 2, 2, 2, 0, 0, 2, 0, 0, 2, 0, 0, 0],
+  [0, 2, 0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 2, 0, 0],
+  [0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
 //Niveles de Gustavo Hernández
 var escenario4 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 0, 2, 2, 2, 0, 1, 2, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 2, 2, 2, 0, 1, 2, 2, 2, 2, 2, 2, 0],
   [0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0],
   [0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 0],
   [0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2, 0, 2, 0],
@@ -115,7 +120,7 @@ var escenario4 = [
 
 var escenario5 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
   [0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0],
   [0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 0, 2, 0],
   [0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 2, 2, 0, 2, 0],
@@ -131,15 +136,15 @@ var escenario5 = [
 
 var escenario6 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0, 2, 3, 0],
+  [0, 0, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0, 2, 3, 0],
   [0, 0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0],
   [0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 2, 0, 0],
   [0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 0],
   [0, 2, 2, 2, 2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0],
   [0, 2, 0, 2, 0, 2, 0, 2, 2, 2, 2, 2, 0, 0, 0],
   [0, 1, 2, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0],
-  [0, 0, 0, 0, 0, 2, 2, 0, 2, 2, 2, 2, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 0]
+  [0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 
 var escenario7 = [
@@ -159,7 +164,7 @@ var escenario7 = [
 //Niveles de  Cinthia Guadalupe Soto Rodriguez. 
 var escenario8 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 2, 2, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 0, 0],
+  [0, 0, 2, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 0, 0],
   [0, 0, 2, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0, 0],
   [0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 0, 0, 2, 0, 0],
   [0, 2, 2, 0, 2, 2, 2, 0, 0, 2, 0, 0, 2, 0, 0],
@@ -172,17 +177,128 @@ var escenario8 = [
 ];
 
 var escenario9 = [
-  [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 0, 0, 0, 0],
-  [0, 2, 2, 2, 2, 0, 2, 2, 2, 0, 2, 0, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0],
   [0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 2, 0],
   [0, 0, 2, 2, 2, 0, 2, 2, 2, 0, 2, 2, 2, 2, 0],
   [0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0],
-  [0, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 0],
+  [0, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 1, 0],
   [0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0],
   [0, 2, 0, 0, 0, 2, 0, 0, 2, 2, 2, 0, 0, 0, 0],
-  [0, 2, 2, 2, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0]
+  [0, 2, 2, 2, 2, 2, 0, 0, 3, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
+
+
+var escenario10 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 0, 2, 0, 0, 2, 2, 0],
+  [0, 2, 2, 0, 0, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 0],
+  [0, 2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 0],
+  [0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0],
+  [0, 3, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+var escenario11 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+  [0, 2, 2, 2, 2, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 2, 0, 0, 2, 0, 2, 2, 0, 0, 0, 2, 2, 2, 0],
+  [0, 2, 0, 2, 2, 0, 0, 2, 2, 0, 2, 2, 0, 2, 0],
+  [0, 2, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 2, 1],
+  [0, 2, 2, 2, 0, 0, 2, 2, 2, 2, 0, 2, 0, 2, 0],
+  [0, 0, 2, 2, 2, 2, 0, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 0, 2, 0, 0, 2, 2, 3, 0, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario12 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0],
+  [0, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 0],
+  [0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 0, 2, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0],
+  [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 1],
+  [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario13 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 0],
+  [0, 0, 2, 0, 0, 0, 0, 2, 2, 2, 2, 0, 2, 2, 0],
+  [0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 2, 0, 0, 2, 0],
+  [0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+  [0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 2, 2, 2, 2, 0, 0, 2, 3, 0, 0, 2, 0, 2, 0],
+  [0, 2, 0, 2, 2, 0, 2, 2, 0, 0, 0, 2, 0, 0, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 1],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario14 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
+  [0, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 2, 0],
+  [0, 2, 0, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 0, 0, 2, 2, 3, 0, 1, 0, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario15 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0],
+  [0, 2, 2, 2, 2, 2, 0, 0, 2, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 2, 0, 2, 0],
+  [0, 2, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 0, 0, 0],
+  [0, 2, 2, 0, 0, 2, 0, 0, 2, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 0, 2, 2, 0, 2, 2, 2, 0, 2, 0, 0],
+  [0, 0, 2, 3, 0, 0, 2, 0, 1, 2, 0, 0, 2, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario16 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0],
+  [0, 2, 0, 2, 0, 0, 2, 0, 2, 2, 2, 0, 2, 2, 0],
+  [0, 2, 0, 2, 2, 0, 2, 0, 2, 0, 0, 0, 0, 2, 0],
+  [0, 2, 0, 0, 2, 0, 2, 0, 2, 0, 0, 0, 2, 2, 0],
+  [0, 2, 0, 2, 2, 0, 2, 0, 2, 2, 0, 2, 2, 0, 0],
+  [0, 2, 2, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 2, 0, 0, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 0],
+  [0, 2, 0, 1, 2, 2, 2, 2, 2, 2, 0, 2, 2, 3, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario17 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 0, 0, 0, 2, 2, 0, 2, 2, 2, 0, 1, 0],
+  [0, 0, 2, 0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+  [0, 0, 2, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 0, 0, 2, 0, 0, 2, 0, 0, 2, 0, 2, 0, 2, 0],
+  [0, 0, 0, 2, 0, 2, 2, 2, 2, 2, 0, 2, 2, 2, 0],
+  [0, 2, 2, 2, 0, 2, 0, 0, 0, 2, 0, 0, 2, 2, 0],
+  [0, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 2, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 3, 0, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+var escenario18 = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0],
+  [0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 0],
+  [0, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 0],
+  [0, 2, 2, 0, 2, 2, 1, 0, 3, 2, 2, 0, 2, 0, 0],
+  [0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 2, 0, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0],
+  [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 2, 2, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
 
 /*--------------------------Termianan niveles-------------------*/
 function dibujaEscenario() {
@@ -191,48 +307,102 @@ function dibujaEscenario() {
   //casos para cada escenario por nivel
   switch (nivel) {
     case 1:
-      escenario=escenario1;
-      document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario1;
+      document.getElementById('nivel').innerHTML = nivel;
       /*  document.getElementById('nivel').innerHTML=nivel; */
       break;
     case 2:
-      escenario=escenario2;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario2;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 3:
-      escenario=escenario3;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario3;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 4:
-      escenario=escenario4;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario4;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 5:
-      escenario=escenario5;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario5;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 6:
-      escenario=escenario6;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario6;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 7:
-      escenario=escenario7;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario7;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 8:
-      escenario=escenario8;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario8;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
     case 9:
-      escenario=escenario9;
-       document.getElementById('nivel').innerHTML=nivel;
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario9;
+      document.getElementById('nivel').innerHTML = nivel;
       break;
-  
+    case 10:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario10;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 11:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario11;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 12:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario12;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 13:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario13;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 14:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario14;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 15:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario15;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 16:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario16;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 17:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario17;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+    case 18:
+      document.getElementById('nivelProgress').setAttribute('value', nivel);
+      escenario = escenario18;
+      document.getElementById('nivel').innerHTML = nivel;
+      break;
+
     default:
       alert("LLegaste final, has gando!!!");
       break;
   }
-  console.log("NIVEL: "+nivel);
+  console.log("NIVEL: " + nivel);
   for (y = 0; y < 10; y++) {
     for (x = 0; x < 15; x++) {
 
@@ -291,7 +461,43 @@ var malo = function (x, y) {
 
 
   this.dibuja = function () {
-    ctx.drawImage(tileMap, 0, 32, 32, 32, this.x * anchoF, this.y * altoF, anchoF, altoF);
+
+    switch (nivel) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+        ctx.drawImage(tileMap, 0, 32, 32, 32, this.x * anchoF, this.y * altoF, anchoF, altoF);
+
+        break;
+      case 7:
+      case 8:
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+        ctx.drawImage(tileMap, 64, 32, 32, 32, this.x * anchoF, this.y * altoF, anchoF, altoF);
+
+        break;
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+      case 17:
+      case 18:
+        ctx.drawImage(tileMap, 96, 32, 32, 32, this.x * anchoF, this.y * altoF, anchoF, altoF);
+
+        break;
+       
+
+        break;
+
+      default:
+        break;
+    }
+    /* ctx.drawImage(tileMap, 0, 32, 32, 32, this.x * anchoF, this.y * altoF, anchoF, altoF); */
   }
 
 
@@ -423,7 +629,7 @@ var jugador = function () {
 
   this.victoria = function () {
     console.log('Has ganado!');
-    
+
     this.x = 1;
     this.y = 1;
 
@@ -436,19 +642,19 @@ var jugador = function () {
   this.muerte = function () {
     console.log('Has perdido!');
 
-    setTimeout("sonido1.play();", 0.1*1000);
-    setTimeout("location.reload();", 0.6*1000);
-    
+    setTimeout("sonido1.play();", 0.1 * 1000);
+    setTimeout("location.reload();", 0.6 * 1000);
+
     if (nivel > recuperar()) {
       guardar(nivel);
     }
-    
+
     this.x = 1;
     this.y = 1;
 
-    nivel=1;
+    nivel = 1;
 
-    
+
 
     this.llave = false; //el jugador ya no tiene la llave
     escenario[8][3] = 3; //volvemos a poner la llave en su sitio
@@ -475,7 +681,7 @@ var jugador = function () {
       if (this.llave == true) {
         this.victoria();
         sonido3.play();
-        
+
       } else {
         console.log('No tienes la llave, no puedes pasar!');
       }
@@ -487,10 +693,173 @@ var jugador = function () {
 }
 
 
+
+
+//TODO: Cambiar tileMap cada 5 niveles (dejar que el jugador escoja el estilo)
+
+//TODO: contexto del juego (historia) e istrucciones detalladas
+//TODO: pwa
+//TODO: cambiar hubicacion del prota segun el nivel
+//TODO: cambiar hubicacion de los enemigos segun el nivel
+
+/*----------------------------------------------------------------------------*/
+
+//TODO: Opcional! respuesta aptica del juego (vibración del móvil)
+//TODO: Opcional! Guardar estado del juego
+//TODO: Opcional! animar al prota y a los enemigos
+//TODO: Opcional! atarldapo a movil: botones para movil, gestos de pantalla y limitar uso en horizontal
+
+
+function cambiaStilo(tile) {
+  switch (tile) {
+
+    case 1:
+      stiloMapa = 'img/tilemap.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+
+    case 2:
+      stiloMapa = 'img/tilemap2.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+
+    case 3:
+      stiloMapa = 'img/tilemap3.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+
+    case 4:
+      stiloMapa = 'img/tilemap4.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+
+    case 5:
+      stiloMapa = 'img/tilemap5.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+    case 6:
+      stiloMapa = 'img/tilemap6.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+    case 7:
+      stiloMapa = 'img/tilemap7.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+    case 8:
+      stiloMapa = 'img/tilemap8.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+    case 9:
+      stiloMapa = 'img/tilemap9.png';
+      localStorage.setItem("stiloMapa", stiloMapa);
+      tileMap = new Image();
+      tileMap.src = stiloMapa;
+      borraCanvas();
+      dibujaEscenario();
+      imagenAntorcha.dibuja();
+      imagenAntorcha2.dibuja();
+      imagenAntorcha3.dibuja();
+      imagenAntorcha4.dibuja();
+      protagonista.dibuja();
+
+      break;
+
+
+
+
+    default:
+      break;
+  }
+
+}
+
+
+
 function inicializa() {
+
   canvas = document.getElementById('canvas');
   ctx = canvas.getContext('2d');
-
+  document.getElementById('maxProgress').setAttribute('value', localStorage.getItem('max'));
 
 
 
@@ -498,14 +867,32 @@ function inicializa() {
   //Musica
   //musica.play();
 
+  if (localStorage.getItem("stiloMapa") == null) {
+    stiloMapa = 'img/tilemap5.png';
+  }
+
   tileMap = new Image();
-  tileMap.src = 'img/S.png';
+
+
+
+
+
+  tileMap.src = stiloMapa;
+
 
 
 
   //cargamos nivel maximo
-  var recuperado = recuperar();
-  document.getElementById('maximo').innerHTML = recuperado;
+  var recuperado;
+  if (localStorage.getItem("max") == undefined) {
+
+    document.getElementById('maximo').innerHTML = 0;
+
+  } else {
+    recuperado = recuperar();
+    document.getElementById('maximo').innerHTML = recuperado;
+  }
+
 
 
   //CREAMOS AL JUGADOR
@@ -518,9 +905,9 @@ function inicializa() {
   imagenAntorcha4 = new antorcha(14, 9);
 
   //CREAMOS LOS ENEMIGOS
-  //enemigo.push(new malo(3, 3));
+  enemigo.push(new malo(3, 3));
   enemigo.push(new malo(5, 7));
-  //enemigo.push(new malo(7, 7));
+  enemigo.push(new malo(7, 7));
 
   //LECTURA DEL TECLADO
   document.addEventListener('keydown', function (tecla) {
@@ -556,8 +943,8 @@ function guardar(nivel) {
 
 //recuperado
 function recuperar() {
-  return(localStorage.getItem("max"));
-  
+  return (localStorage.getItem("max"));
+
 }
 
 
@@ -583,6 +970,7 @@ function principal() {
   }
 
 }
+
 
 
 
