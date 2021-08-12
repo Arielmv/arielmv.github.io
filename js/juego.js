@@ -816,7 +816,7 @@ function cambiaStilo(tile) {
 
       break;
     case 8:
-      stiloMapa = 'img/tilemap8.png';
+      stiloMapa = 'img/s.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -830,7 +830,7 @@ function cambiaStilo(tile) {
 
       break;
     case 9:
-      stiloMapa = 'img/tilemap9.png';
+      stiloMapa = 'img/tilemap6.png';
       localStorage.setItem("stiloMapa", stiloMapa);
       tileMap = new Image();
       tileMap.src = stiloMapa;
@@ -970,16 +970,3 @@ function principal() {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
